@@ -1,5 +1,27 @@
 /* Your Code Here */
+function createEmployeeRecord(array){
+    const employeeRecord = {
+        firstName: array[0],
+        familyName: array[1],
+        title: array[2],
+        payPerHour: array[3],
+        timeInEvents: [],
+        timeOutEvents: []
+    };
+    return employeeRecord;
+}
 
+function createEmployeeRecords(employeeDataArray){
+    const employeeRecords = [];
+
+    for(let i = 0; i < employeeDataArray.length ; i++){
+        const employeeData = employeeDataArray[i];
+        const employeeRecord = createEmployeeRecord(employeeData);
+        employeeRecords.push(employeeRecord);
+    }
+
+
+}
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
