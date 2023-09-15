@@ -19,9 +19,68 @@ function createEmployeeRecords(employeeDataArray){
         const employeeRecord = createEmployeeRecord(employeeData);
         employeeRecords.push(employeeRecord);
     }
-
-
+    return employeeRecords;
 }
+
+function createTimeInEvent(dateTimeString){
+    // console.log(this)
+    const timeInEvent = {};
+
+    // Sets the type to "TimeIn"
+    timeInEvent.type = "TimeIn";
+
+    // Extract the date from the dateTimeString
+    const [date, time] = dateTimeString.split(' ');
+    timeInEvent.date = date;
+
+    // Extract the hour from the time
+    const hour = parseInt(time, 10);
+    timeInEvent.hour = hour;
+
+    // Add the time in event to the employee's timeInEvents
+    this.timeInEvents.push(timeInEvent);
+
+    // console.log("createTimeInEvent Function:", employeeRecord)
+    return this
+}
+
+function createTimeOutEvent(dateTimeString){
+    const timeOutEvent = {};
+
+    timeOutEvent.type = "TimeOut";
+
+    const [date, time] = dateTimeString.split(' ');
+    timeOutEvent.date = date;
+
+    const hour = parseInt(time, 10);
+    timeOutEvent.hour = hour;
+
+    this.timeOutEvents.push(timeOutEvent);
+
+    // console.log("createTimeOutEvent Function:", employeeRecord)
+    return this
+}
+
+function hoursWorkedOnDate(date){
+    const timeInEvent = this.timeInEvents.find(event => event.date === date);
+    const timeOutEvent = this.timeOutEvents.find(event => event.date === date);
+
+  if (timeInEvent && timeOutEvent) {
+    const hoursWorked = timeOutEvent.hour - timeInEvent.hour;
+    return hoursWorked / 100;
+  } else {
+    return 0; 
+  }
+}
+
+
+
+
+
+
+
+
+
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
