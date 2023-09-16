@@ -73,6 +73,34 @@ function hoursWorkedOnDate(date){
   }
 }
 
+// function wagesEarnedOnDate(cRecord/this, date)
+
+function wagesEarnedOnDate(date){
+    const hoursWorked = hoursWorkedOnDate.call(this, date);
+    const pay = hoursWorked * this.payPerHour;
+    return pay;
+}
+
+function findEmployeeByFirstName(collection, firstNameString) {
+    return collection.find(function(employee) {
+      return employee.firstName === firstNameString;
+    });
+    }
+
+function calculatePayroll(employeeRecords) {
+  return employeeRecords.reduce(function(totalPayroll, employee) {
+    return totalPayroll + allWagesFor.call(employee);
+  }, 0);
+}
+
+// function wagesEarnedOnDate(date){
+//     // console.log(this)
+//     console.log(date)
+//     let hoursWorked = hoursWorkedOnDate(this.date)
+//     console.log('HOURS WORKED:', hoursWorked)
+//     return (hoursWorked * this.payPerHour)
+// }
+
 
 
 
